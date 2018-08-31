@@ -73,8 +73,11 @@ h5{
   border: 1px solid rgba(0,0,0,.125);
   border-radius: .25rem;
 }
+<<<<<<< HEAD
 #addBtn{
   cursor: pointer;
 }
+=======
+>>>>>>> 49504f1c26bbac162234898e03385475e7734c1d
 
 </style>

@@ -1,36 +1,28 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import App from './App.vue'
-import TODO_BODY from './components/Todo-BODY.vue'
-import moment from 'moment'
+import $ from 'jquery'
+import 'popper.js'
+import 'bootstrap'
+import 'bootstrap/dist/css/bootstrap.min.css'
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faAlignJustify } from '@fortawesome/free-solid-svg-icons'
+import { faPlus } from '@fortawesome/free-solid-svg-icons'
+import { faCheckCircle } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
-Vue.use(Vuex);
-const store = new Vuex.Store({
-  state: {
-    seq: 0,
-    list: [] //{seq: 0, 1, 2.. todoName: String, regDate: yyyymmdd}
-  },
-  mutations: {
-    pushToList(state, item){
-      state.list.push(item);
-    },
-    doTodoItem (state, seq) {
-      state.list[seq].completed = true;
-    }    
-  }
-})
 
-var pageName = document.getElementsByTagName('title')[0].text;
+import App from './Components/App.vue'
+import store from './Store/store.js'
 
-if(pageName == 'todolist'){
-  new Vue({
-    el: '#todo',
-    store,
-    render: h => h(TODO_BODY)
-  })
-}else{
-  new Vue({
+// Fontawesome
+library.add(faAlignJustify)
+library.add(faPlus)
+library.add(faCheckCircle)
+Vue.component('font-awesome-icon', FontAwesomeIcon)
+Vue.config.productionTip = false
+
+new Vue({
     el: '#app',
+    store,
     render: h => h(App)
   })
-}

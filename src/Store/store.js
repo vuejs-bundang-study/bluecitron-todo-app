@@ -40,7 +40,8 @@ export default new Vuex.Store({
     },
     addToDoItem: (state, item) => {
       item.index = state.todosIndex++;
-      state.todos.push(item);      
+      state.todos.push(item);
+      console.log('Check : ', state.todos);     
     }
   }
 })

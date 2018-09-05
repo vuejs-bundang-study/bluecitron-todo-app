@@ -1,5 +1,5 @@
 <template>
-  <div id="todoADD" class="modal" tabindex="-1" role="dialog">
+  <div :id="modalID" class="modal" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -40,7 +40,8 @@ export default {
   },
   props:{
     listIndex: Number,
-    listName: String
+    listName: String,
+    modalID: String
   },
   computed: {
 
@@ -55,7 +56,7 @@ export default {
         regDate: moment().format('YYYY-MM-DD HH:mm:ss')
       }
       this.$store.commit('addToDoItem', todo);
-      this.todoName = ''; this.Memo = '';
+      this.todoName = ''; this.todoMemo = '';
       this.closeModal();
     },
     closeModal: function(){

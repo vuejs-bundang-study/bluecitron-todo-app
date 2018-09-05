@@ -12,7 +12,7 @@
     <div class="card-body">
       <div class="accordion" id="accordionExample">
         <!-- 항목 1 -->
-        <div class="card" v-for="item in items" data-toggle="collapse">
+        <div class="card" v-for="(item, index) in items" data-toggle="collapse" :data-target="itemID(index, true)">
           <div class="card-header">
             <h5 class="mb-0 d-flex justify-content-between">
               <button class="btn btn-link" type="button"  aria-expanded="false" >
@@ -25,7 +25,7 @@
             </h5>
           </div>
 
-          <div>
+          <div :id="itemID(index, false)" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
             <div class="card-body">
               {{item.memo}}
             </div>
@@ -39,12 +39,12 @@
             <h5 class="mb-0 d-flex justify-content-between">
               <button class="btn btn-link btn-add" type="button"
               aria-expanded="false"
-              data-toggle="modal" data-target="#todoADD"
+              data-toggle="modal" :data-target="modalIDwithShap"
                >
                 <font-awesome-icon class="todolist_icon" icon="plus" />
                 할 일 추가
               </button>
-              <items-add :listIndex="listIndex" :listName="listName"></items-add>
+              <items-add :listIndex="listIndex" :listName="listName" :modalID="modalID"></items-add>
             </h5>
           </div>
 
@@ -66,7 +66,7 @@ export default {
   name: 'ITEMS',
   data() {
     return {
-      items: this.$store.getters.getToDoItems(this.listIndex, this.listName)
+      
     }
   },
   props:{
@@ -98,10 +98,22 @@ export default {
         case 6: result = 'SATURDAY';   break;
       }
       return result;
-    }
+    },
+    modalID: function(){
+      return 'todoADD_' + this.listIndex;
+    },
+    modalIDwithShap: function(){
+      return '#' + this.modalID;
+    },
+    items:function(){
+      return this.$store.state.todos.filter(item => (item.listName == this.listName) && (item.listIndex == this.listIndex));
+    },
+
   },
   methods: {
-
+    itemID: function(index, withSharp){
+      return (withSharp ? '#' : '') + 'collapse_' + index;
+    }
   },
   created() {
 

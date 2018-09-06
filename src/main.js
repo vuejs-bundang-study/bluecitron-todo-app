@@ -1,5 +1,8 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import BootstrapVue from 'bootstrap-vue'
+import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap-vue/dist/bootstrap-vue.css'
 import $ from 'jquery'
 import 'popper.js'
 import 'bootstrap'
@@ -22,7 +25,7 @@ library.add(faCheckCircle)
 library.add(faCircle)
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 Vue.config.productionTip = false
-
+Vue.use(BootstrapVue);
 new Vue({
     el: '#app',
     store,

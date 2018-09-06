@@ -2,7 +2,7 @@
 <div class="container mt-4">
   <div class="row">
     <div class="col-md-3">
-      <lists title="TO DO LIST" @receiveFromList="changeList"></lists>
+      <list title="TO DO LIST" @receiveFromList="changeList"></list>
     </div>
 
     <div class="col-md-7">
@@ -22,10 +22,13 @@
 </template>
 
 <script>
-import LISTS from './LISTS.vue'
-import ITEMS from './ITEMS.vue'
+import ListComponent from './ListComponent.vue'
+import ITEMS from './TodoComponent.vue'
 export default {
-  name: 'app',
+  components: {
+    'list': ListComponent,
+    'items': ITEMS
+  },
   data() {
     return {
       todolist: this.$store.getters.getToDoLists,
@@ -46,17 +49,14 @@ export default {
       this.showList.push(false);
     this.showList[0] = true;
   },
-  components: {
-    'lists': LISTS,
-    'items': ITEMS
-  }
+
 
 }
 </script>
 <style scoped>
 .container{
   border:1px solid rgba(0, 0, 0, .25);
-  border-radius:2rem;
+  border-radius:.5rem;
   padding:20px;
   min-height:600px;
 }

@@ -16,7 +16,11 @@
           :aria-expanded="expanded[index]">
           <div class="d-flex justify-content-between">
             <span>{{item.name}}</span>
-            <span>{{item.regDate}} <font-awesome-icon class="icon" icon="check-circle" /></span>
+            <span>
+              {{item.regDate}}
+              <font-awesome-icon class="icon checked" icon="check-circle" v-show="item.completed"/>
+              <font-awesome-icon class="icon" icon="circle" v-show="!item.completed"/>
+            </span>
           </div>
         </b-btn>
       </b-card-header>
@@ -103,8 +107,11 @@ button{
 }
 .icon {
   position: relative;
-  color: green;
+  color: gray;
   cursor: pointer;
+}
+.icon.checked{
+  color:green;
 }
 
 .icon:hover {}
